@@ -1,0 +1,22 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
+    "ANTHROPIC_AUTH_TOKEN": "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",
+    "ANTHROPIC_API_KEY": "",
+    "ANTHROPIC_MODEL": "stepfun/step-3.5-flash:free"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(cd:*)",
+      "Bash(xargs ls:*)",
+      "Bash(npm init:*)",
+      "Bash(npm run:*)",
+      "Bash(curl:*)",
+      "Bash(node -e \"console.log\\(''Client ID:'', process.env.GOOGLE_CLIENT_ID ? ''Found'' : ''Missing''\\); console.log\\(''Client Secret:'', process.env.GOOGLE_CLIENT_SECRET ? ''Found'' : ''Missing''\\);\")",
+      "Bash(npm list:*)",
+      "Bash(npm start:*)",
+      "Bash(find backend/src -type f -name *.js)"
+    ]
+  }
+}
