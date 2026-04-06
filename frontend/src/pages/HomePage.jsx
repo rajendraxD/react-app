@@ -1,6 +1,8 @@
 import React from "react";
+import { Box } from "@mui/material";
 import SideNav from "../features/layout/components/SideNav";
-import { Box, Typography, Container, Paper, Grid } from "@mui/material";
+import DashboardPage from "./DashboardPage";
+import Header from "../features/layout/components/Header";
 
 export default function HomePage() {
   return (
@@ -9,23 +11,26 @@ export default function HomePage() {
         display: "flex",
         height: "100vh", // Fixed height to prevent page scrolling
         overflow: "hidden", // Hide root scroll
-        backgroundColor: "#f3f4f6",
+        backgroundColor: "#f3f4f6", // Match sidenav/background
       }}
     >
-      {/* Navigation */}
+      {/* Navigation (Fixed) */}
       <SideNav />
 
-      {/* Main Content Area */}
+      {/* Main Content Area (Scrollable) */}
       <Box
         component="main"
         sx={{
           flexGrow: 1,
-          height: "100%", // Fill parent height
-          overflowY: "auto", // Enable scrolling here
-          p: { xs: 2, md: 4 },
+          height: "100vh",
+          overflowY: "auto",
+          backgroundColor: "#f9fafb", // Background for main area
         }}
       >
-        <Container maxWidth="xl">{/* Main */}</Container>
+        <Box sx={{ px: 2, py: 1 }}>
+          <Header />
+          <DashboardPage />
+        </Box>
       </Box>
     </Box>
   );
