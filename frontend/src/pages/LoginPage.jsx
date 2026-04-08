@@ -1,207 +1,207 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import {
+  Box,
+  Typography,
+  InputBase,
+  Button,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+
+/* ─── Design Tokens ─── */
+const tokens = {
+  bg: "#0d0f1a",
+  cardBg: "rgba(22, 27, 51, 0.65)",
+  cardBorder: "rgba(100, 110, 160, 0.25)",
+  inputBg: "rgba(40, 45, 75, 0.55)",
+  inputBorder: "rgba(100, 110, 160, 0.3)",
+  inputText: "#c8cce0",
+  placeholder: "rgba(180, 185, 210, 0.6)",
+  accent: "#e84373",
+  accentEnd: "#d63464",
+  titleColor: "#e8eaf0",
+  purpleGlow: "rgba(120, 40, 160, 0.25)",
+};
+
+/* ─── Reusable Styles ─── */
+const inputSx = {
+  width: "100%",
+  backgroundColor: tokens.inputBg,
+  border: `1px solid ${tokens.inputBorder}`,
+  borderRadius: "10px",
+  px: 2.5,
+  py: 1.5,
+  fontSize: "0.95rem",
+  color: tokens.inputText,
+  fontFamily: "'Outfit', sans-serif",
+  letterSpacing: "0.3px",
+  transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+  "&:hover": {
+    borderColor: "rgba(130, 140, 190, 0.45)",
+  },
+  "&.Mui-focused": {
+    borderColor: tokens.accent,
+    boxShadow: `0 0 0 2px rgba(232, 67, 115, 0.15)`,
+  },
+  "& input::placeholder": {
+    color: tokens.placeholder,
+    opacity: 1,
+    fontFamily: "'Outfit', sans-serif",
+  },
+};
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Login:", { username, password, rememberMe });
-  };
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePassword = useCallback(
+    () => setShowPassword((prev) => !prev),
+    []
+  );
 
   return (
-    <div className="login-page">
-      <div className="login-card">
-        <h1 className="login-title">Sign in</h1>
-        <p className="login-subtitle">Enter your credentials to access your account</p>
+    <>
+      {/* Google Font */}
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');`}</style>
 
-        <form onSubmit={handleSubmit} className="login-form">
-          <div className="input-group">
-            <label className="input-label">Email</label>
-            <input
-              type="email"
-              placeholder="name@company.com"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="login-input"
+      <Box
+        component="main"
+        sx={{
+          minHeight: "100vh",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: `
+            radial-gradient(ellipse 50% 60% at 10% 50%, ${tokens.purpleGlow}, transparent 70%),
+            linear-gradient(160deg, #10132a 0%, ${tokens.bg} 40%, #0b0d18 100%)
+          `,
+          fontFamily: "'Outfit', sans-serif",
+          p: 2,
+        }}
+      >
+        {/* ── Glassmorphism Card ── */}
+        <Box
+          sx={{
+            width: "100%",
+            maxWidth: 420,
+            background: tokens.cardBg,
+            backdropFilter: "blur(24px)",
+            WebkitBackdropFilter: "blur(24px)",
+            border: `1px solid ${tokens.cardBorder}`,
+            borderRadius: "18px",
+            px: { xs: 3.5, sm: 5 },
+            py: { xs: 4.5, sm: 5.5 },
+            boxShadow: `
+              0 8px 32px rgba(0, 0, 0, 0.35),
+              inset 0 1px 0 rgba(255, 255, 255, 0.04)
+            `,
+          }}
+        >
+          {/* ── Title ── */}
+          <Box sx={{ textAlign: "center", mb: 5 }}>
+            <Typography
+              variant="h4"
+              sx={{
+                color: tokens.titleColor,
+                fontFamily: "'Outfit', sans-serif",
+                fontWeight: 400,
+                fontSize: "1.85rem",
+                letterSpacing: "1.2px",
+                mb: 1.2,
+              }}
+            >
+              Login
+            </Typography>
+            <Box
+              sx={{
+                width: 36,
+                height: 3,
+                backgroundColor: tokens.accent,
+                borderRadius: 2,
+                mx: "auto",
+              }}
             />
-          </div>
+          </Box>
 
-          <div className="input-group">
-            <label className="input-label">Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="login-input"
+          {/* ── Username Field ── */}
+          <Box sx={{ mb: 3 }}>
+            <InputBase
+              id="login-username"
+              placeholder="Username"
+              fullWidth
+              sx={inputSx}
+              inputProps={{ "aria-label": "Username" }}
             />
-          </div>
+          </Box>
 
-          <div className="form-options">
-            <label className="checkbox-wrapper">
-              <input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="checkbox"
-              />
-              <span>Remember me</span>
-            </label>
-            <a href="#" className="forgot-link">Forgot password?</a>
-          </div>
+          {/* ── Password Field ── */}
+          <Box sx={{ mb: 4.5 }}>
+            <InputBase
+              id="login-password"
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              fullWidth
+              sx={inputSx}
+              inputProps={{ "aria-label": "Password" }}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={togglePassword}
+                    edge="end"
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
+                    sx={{
+                      color: tokens.placeholder,
+                      mr: -0.5,
+                      "&:hover": { color: tokens.inputText },
+                    }}
+                    size="small"
+                  >
+                    {showPassword ? (
+                      <VisibilityOff fontSize="small" />
+                    ) : (
+                      <Visibility fontSize="small" />
+                    )}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </Box>
 
-          <button type="submit" className="login-button">
-            Sign in
-          </button>
-        </form>
-
-        <p className="signup-prompt">
-          Don't have an account? <a href="#" className="signup-link">Create one</a>
-        </p>
-      </div>
-
-      <style>{`
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-
-        .login-page {
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #f5f5f5;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-          padding: 20px;
-        }
-
-.login-card {
-           width: 100%;
-           max-width: 320px;
-           padding: 20px;
-           background: #fff;
-           border-radius: 6px;
-           box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-         }
-
-        .login-title {
-          font-size: 24px;
-          font-weight: 600;
-          color: #111;
-          margin-bottom: 8px;
-        }
-
-        .login-subtitle {
-          font-size: 14px;
-          color: #666;
-          margin-bottom: 32px;
-        }
-
-        .login-form {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .input-group {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-
-        .input-label {
-          font-size: 13px;
-          font-weight: 500;
-          color: #374151;
-        }
-
-        .login-input {
-          width: 100%;
-          padding: 10px 12px;
-          border: 1px solid #d1d5db;
-          border-radius: 6px;
-          font-size: 14px;
-          color: #111;
-          outline: none;
-          transition: border-color 0.15s, box-shadow 0.15s;
-        }
-
-        .login-input:focus {
-          border-color: #2563eb;
-          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .login-input::placeholder {
-          color: #9ca3af;
-        }
-
-        .form-options {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .checkbox-wrapper {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 13px;
-          color: #4b5563;
-          cursor: pointer;
-        }
-
-        .checkbox {
-          accent-color: #2563eb;
-        }
-
-        .forgot-link {
-          font-size: 13px;
-          color: #2563eb;
-          text-decoration: none;
-        }
-
-        .forgot-link:hover {
-          text-decoration: underline;
-        }
-
-        .login-button {
-          width: 100%;
-          padding: 10px 16px;
-          background: #111;
-          border: none;
-          border-radius: 6px;
-          color: #fff;
-          font-size: 14px;
-          font-weight: 500;
-          cursor: pointer;
-          transition: background 0.15s;
-          margin-top: 8px;
-        }
-
-        .login-button:hover {
-          background: #000;
-        }
-
-        .signup-prompt {
-          text-align: center;
-          font-size: 13px;
-          color: #4b5563;
-          margin-top: 24px;
-        }
-
-        .signup-link {
-          color: #2563eb;
-          text-decoration: none;
-        }
-
-        .signup-link:hover {
-          text-decoration: underline;
-        }
-      `}</style>
-    </div>
+          {/* ── Login Button ── */}
+          <Button
+            id="login-submit"
+            fullWidth
+            variant="contained"
+            disableElevation
+            sx={{
+              background: `linear-gradient(135deg, ${tokens.accent} 0%, ${tokens.accentEnd} 100%)`,
+              color: "#fff",
+              fontFamily: "'Outfit', sans-serif",
+              fontWeight: 500,
+              fontSize: "1rem",
+              letterSpacing: "0.8px",
+              textTransform: "none",
+              borderRadius: "10px",
+              py: 1.6,
+              transition: "all 0.3s ease",
+              boxShadow: "0 4px 20px rgba(232, 67, 115, 0.3)",
+              "&:hover": {
+                background: `linear-gradient(135deg, #f04e80 0%, ${tokens.accent} 100%)`,
+                boxShadow: "0 6px 28px rgba(232, 67, 115, 0.45)",
+                transform: "translateY(-1px)",
+              },
+              "&:active": {
+                transform: "translateY(0)",
+                boxShadow: "0 2px 12px rgba(232, 67, 115, 0.25)",
+              },
+            }}
+          >
+            Login
+          </Button>
+        </Box>
+      </Box>
+    </>
   );
 }
