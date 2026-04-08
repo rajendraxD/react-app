@@ -55,7 +55,7 @@ export default function LoginPage() {
           overflow: "hidden",
           flexDirection: { xs: "column", md: "row" },
           my: { xs: 4, md: 0 },
-          transition: "all 0.1s ease-in-out",
+          transition: "all 0.2s ease-in-out",
         }}
       >
         {/* ═══════════ LEFT PANE — Sign‑in Form ═══════════ */}
@@ -145,18 +145,18 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               endAdornment={
-                <InputAdornment position="end" sx={{ mr: 1 }}>
+                <InputAdornment position="end" sx={{ mr: 2 }}>
                   <IconButton
                     aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                     edge="end"
-                    size="small"
+                    size="medium"
                   >
                     {showPassword ? (
-                      <VisibilityOff fontSize="small" />
+                      <VisibilityOff fontSize="medium" />
                     ) : (
-                      <Visibility fontSize="small" />
+                      <Visibility fontSize="medium" />
                     )}
                   </IconButton>
                 </InputAdornment>
@@ -184,7 +184,7 @@ export default function LoginPage() {
               color: "#fff",
               textTransform: "none",
               fontWeight: 600,
-              fontSize: { xs: "18px", sm: "14px", md: "14px" },
+              fontSize: { xs: "20px", sm: "14px", md: "14px" },
               py: { xs: 2, sm: 1.5, md: 1.5 },
               borderRadius: "4px",
               boxShadow: "none",
@@ -206,7 +206,7 @@ export default function LoginPage() {
                 color: "#555",
               }}
             >
-              Don't have a Zoho account?{" "}
+              Don't have an account?{" "}
               <Typography
                 component="a"
                 href="#"
@@ -218,7 +218,7 @@ export default function LoginPage() {
                   "&:hover": { textDecoration: "underline" },
                 }}
               >
-                Sign up now
+                Register now
               </Typography>
             </Typography>
           </Box>
