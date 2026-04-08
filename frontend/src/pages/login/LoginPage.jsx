@@ -55,7 +55,7 @@ export default function LoginPage() {
           overflow: "hidden",
           flexDirection: { xs: "column", md: "row" },
           my: { xs: 4, md: 0 },
-          transition: "all 0.3s ease",
+          transition: "all 0.1s ease-in-out",
         }}
       >
         {/* ═══════════ LEFT PANE — Sign‑in Form ═══════════ */}
@@ -70,9 +70,9 @@ export default function LoginPage() {
           {/* Sign in heading */}
           <Typography
             sx={{
-              fontSize: { xs: "22px", sm: "24px" },
+              fontSize: { xs: "45px", sm: "24px" },
               fontWeight: 500,
-              color: "#000",
+              // color: "#000",
               lineHeight: 1.2,
               mb: 0.5,
               fontFamily: "'Georgia', serif",
@@ -82,13 +82,13 @@ export default function LoginPage() {
           </Typography>
           <Typography
             sx={{
-              fontSize: "14px",
+              fontSize: "16px",
               color: "#555",
               mb: 4,
               fontFamily: "'Georgia', serif",
             }}
           >
-            to access Forms
+            to access Things...
           </Typography>
 
           {/* Email input */}
@@ -111,9 +111,9 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               sx={{
-                px: 1.5,
-                py: 1.2,
-                fontSize: "14px",
+                px: { xs: 2, sm: 1.5, md: 1.5 },
+                py: { xs: 2, sm: 1.5, md: 1.5 },
+                fontSize: { xs: "18px", sm: "14px", md: "14px" },
                 color: "#333",
                 fontFamily: "inherit",
                 "& input::placeholder": {
@@ -162,9 +162,9 @@ export default function LoginPage() {
                 </InputAdornment>
               }
               sx={{
-                pl: 1.5,
-                py: 1.2,
-                fontSize: "14px",
+                pl: { xs: 2, sm: 1.5, md: 1.5 },
+                py: { xs: 2, sm: 1.5, md: 1.5 },
+                fontSize: { xs: "18px", sm: "14px", md: "14px" },
                 color: "#333",
                 fontFamily: "inherit",
                 "& input::placeholder": {
@@ -184,8 +184,8 @@ export default function LoginPage() {
               color: "#fff",
               textTransform: "none",
               fontWeight: 600,
-              fontSize: "15px",
-              py: 1.3,
+              fontSize: { xs: "18px", sm: "14px", md: "14px" },
+              py: { xs: 2, sm: 1.5, md: 1.5 },
               borderRadius: "4px",
               boxShadow: "none",
               mb: 1,
@@ -200,13 +200,18 @@ export default function LoginPage() {
 
           {/* Sign up link */}
           <Box className="">
-            <Typography sx={{ fontSize: "13px", color: "#555" }}>
+            <Typography
+              sx={{
+                fontSize: { xs: "15px", sm: "13px", md: "13px" },
+                color: "#555",
+              }}
+            >
               Don't have a Zoho account?{" "}
               <Typography
                 component="a"
                 href="#"
                 sx={{
-                  fontSize: "13px",
+                  fontSize: { xs: "15px", sm: "13px", md: "13px" },
                   color: "#159AFF",
                   fontWeight: 600,
                   textDecoration: "none",
