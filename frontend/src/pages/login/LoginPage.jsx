@@ -50,7 +50,7 @@ export default function LoginPage() {
       >
         {/* ═══════════ LEFT PANE — Sign‑in Form ═══════════ */}
         <Box
-          className="flex flex-col"
+          className="flex flex-col justify-center"
           sx={{
             flex: { xs: "1 1 auto", md: "0 0 55%" },
             px: { xs: 3, sm: 5, md: 6 },
@@ -213,6 +213,7 @@ export default function LoginPage() {
         <Box
           className="flex flex-col items-center justify-center text-center"
           sx={{
+            display: { xs: "none", md: "flex" },
             flex: { xs: "1 1 auto", md: "0 0 45%" },
             px: { xs: 3, sm: 4 },
             py: { xs: 4, sm: 5 },
@@ -224,7 +225,7 @@ export default function LoginPage() {
       </Box>
 
       {/* ─── Footer ─── */}
-      <Typography
+      {/* <Typography
         className="relative z-10"
         sx={{
           mt: 4,
@@ -235,7 +236,7 @@ export default function LoginPage() {
         }}
       >
         © 2026, Zoho Corporation Pvt. Ltd. All Rights Reserved.
-      </Typography>
+      </Typography> */}
     </Box>
   );
 }
