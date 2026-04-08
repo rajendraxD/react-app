@@ -4,12 +4,21 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import QrCode2Icon from "@mui/icons-material/QrCode2";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <Box
       className="min-h-screen w-full flex flex-col items-center justify-center relative"
@@ -129,11 +138,25 @@ export default function LoginPage() {
           >
             <InputBase
               fullWidth
+              type={showPassword ? "text" : "password"}
               placeholder="********"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              endAdornment={
+                <InputAdornment position="end" sx={{ mr: 1 }}>
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                    size="small"
+                  >
+                    {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                  </IconButton>
+                </InputAdornment>
+              }
               sx={{
-                px: 1.5,
+                pl: 1.5,
                 py: 1.2,
                 fontSize: "14px",
                 color: "#333",
