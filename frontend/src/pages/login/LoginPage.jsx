@@ -21,7 +21,7 @@ export default function LoginPage() {
 
   return (
     <Box
-      className="min-h-screen w-full flex flex-col items-center justify-center relative"
+      className="h-screen w-screen flex flex-col items-center justify-center relative"
       sx={{
         /* Geometric faceted background like Zoho */
         background: `
@@ -47,14 +47,15 @@ export default function LoginPage() {
       <Box
         className="flex w-full relative z-10"
         sx={{
-          maxWidth: { xs: "95%", sm: "460px", md: "890px" },
-          minHeight: { xs: "auto", md: "560px" },
+          maxWidth: { xs: "100%", sm: "460px", md: "890px" },
+          minHeight: { xs: "100vh", sm: "auto", md: "560px" },
           backgroundColor: "#fff",
           borderRadius: "6px",
           boxShadow: "0 2px 30px rgba(204,204,204,0.4)",
           overflow: "hidden",
           flexDirection: { xs: "column", md: "row" },
           my: { xs: 4, md: 0 },
+          transition: "all 0.3s ease",
         }}
       >
         {/* ═══════════ LEFT PANE — Sign‑in Form ═══════════ */}
@@ -123,6 +124,7 @@ export default function LoginPage() {
             />
           </Box>
 
+          {/* Password input */}
           <Box
             sx={{
               border: "0.8px solid #E4E4E4",
@@ -151,7 +153,11 @@ export default function LoginPage() {
                     edge="end"
                     size="small"
                   >
-                    {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                    {showPassword ? (
+                      <VisibilityOff fontSize="small" />
+                    ) : (
+                      <Visibility fontSize="small" />
+                    )}
                   </IconButton>
                 </InputAdornment>
               }
@@ -169,7 +175,7 @@ export default function LoginPage() {
             />
           </Box>
 
-          {/* Next button */}
+          {/* Login button */}
           <Button
             fullWidth
             variant="contained"
@@ -182,7 +188,7 @@ export default function LoginPage() {
               py: 1.3,
               borderRadius: "4px",
               boxShadow: "none",
-              mb: 4,
+              mb: 1,
               "&:hover": {
                 backgroundColor: "#0D8AEC",
                 boxShadow: "0 4px 16px rgba(21,154,255,0.3)",
@@ -193,7 +199,7 @@ export default function LoginPage() {
           </Button>
 
           {/* Sign up link */}
-          <Box className="mt-auto">
+          <Box className="">
             <Typography sx={{ fontSize: "13px", color: "#555" }}>
               Don't have a Zoho account?{" "}
               <Typography
@@ -223,15 +229,6 @@ export default function LoginPage() {
           }}
         />
 
-        {/* ─── Horizontal divider for mobile ─── */}
-        <Divider
-          sx={{
-            display: { xs: "block", md: "none" },
-            borderColor: "#ECECEC",
-            mx: 3,
-          }}
-        />
-
         {/* ═══════════ RIGHT PANE — Illustration ═══════════ */}
         <Box
           className="flex flex-col items-center justify-center text-center"
@@ -258,7 +255,7 @@ export default function LoginPage() {
           textAlign: "center",
         }}
       >
-        © 2026, Zoho Corporation Pvt. Ltd. All Rights Reserved.
+        © 2026, XYZ Corporation Pvt. Ltd. All Rights Reserved.
       </Typography> */}
     </Box>
   );
