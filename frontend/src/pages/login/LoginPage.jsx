@@ -97,7 +97,7 @@ export default function LoginPage() {
           >
             <InputBase
               fullWidth
-              placeholder="Email address or mobile number"
+              placeholder="your@gmail.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               sx={{
@@ -129,7 +129,7 @@ export default function LoginPage() {
           >
             <InputBase
               fullWidth
-              placeholder="Password"
+              placeholder="********"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               sx={{
